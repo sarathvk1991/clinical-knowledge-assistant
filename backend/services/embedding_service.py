@@ -3,13 +3,14 @@ from config import get_settings
 from core.logging import logger
 from core.errors import EmbeddingError
 
-settings = get_settings()
-client = OpenAI(api_key=settings.openai_api_key)
 
 
 def generate_embeddings(texts: list[str]) -> list[list[float]]:
     if not texts:
         return []
+    
+    settings = get_settings()
+    client = OpenAI(api_key=settings.openai_api_key)
 
     try:
         batch_size = 100
