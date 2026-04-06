@@ -69,15 +69,19 @@ def debug_pinecone():
 
     try:
         indexes = pc.list_indexes()
-        response["indexes"] = indexes
+        # ✅ convert to simple list
+        response["indexes"] = [i["name"] for i in indexes]
     except Exception as e:
         response["indexes_error"] = str(e)
 
     try:
         index = pc.Index(settings.pinecone_index_name)
         stats = index.describe_index_stats()
+
+        # ✅ only extract safe fields
         response["index_name"] = settings.pinecone_index_name
-        response["stats"] = stats
+        response["total_vector_count"] = stats.get("total_vector_count", "unknown")
+
     except Exception as e:
         response["index_error"] = str(e)
 
