@@ -161,11 +161,12 @@ def process_query(
 
     if evaluation.get("hallucination"):
         logger.warning(
-            "Hallucination detected",
+            "Hallucination detected — returning cautious response",
             extra={"query": question[:100], "evaluation": evaluation},
         )
-        debug_info = _build_minimal_debug(retrieved_chunks, reranked_chunks) if debug else None
-        return _fallback_response("hallucination_detected", debug_info)
+        #debug_info = _build_minimal_debug(retrieved_chunks, reranked_chunks) if debug else None
+        #return _fallback_response("hallucination_detected", debug_info)
+        answer = _cautious_response(answer)
 
     # 6. Low confidence
     if confidence["score"] < 0.4:
