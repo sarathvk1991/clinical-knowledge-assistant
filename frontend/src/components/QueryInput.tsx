@@ -10,6 +10,7 @@ interface Props {
 export default function QueryInput({ onResponse, onLoading }: Props) {
   const [question, setQuestion] = useState("");
   const [error, setError] = useState("");
+  const [debugMode, setDebugMode] = useState(false);
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
@@ -18,7 +19,7 @@ export default function QueryInput({ onResponse, onLoading }: Props) {
     setError("");
     onLoading(true);
     try {
-      const res = await submitQuery({ question: question.trim() });
+      const res = await submitQuery({ question: question.trim(), debug: debugMode || undefined });
       onResponse(res);
     } catch (err) {
       setError(err instanceof Error ? err.message : "Query failed");
@@ -37,6 +38,16 @@ export default function QueryInput({ onResponse, onLoading }: Props) {
           placeholder="Enter your clinical question..."
           rows={3}
         />
+        <div className="debug-toggle">
+          <label>
+            <input
+              type="checkbox"
+              checked={debugMode}
+              onChange={(e) => setDebugMode(e.target.checked)}
+            />
+            {" "}Show Debug Info
+          </label>
+        </div>
         <button type="submit" className="btn-primary" disabled={!question.trim()}>
           Submit Query
         </button>

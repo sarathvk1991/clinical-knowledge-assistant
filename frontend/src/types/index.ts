@@ -36,6 +36,21 @@ export interface QueryRequest {
   document_filter?: string[];
   top_k?: number;
   conversation_history?: { role: string; content: string }[];
+  debug?: boolean;
+}
+
+export interface DebugChunk {
+  document_name: string;
+  chunk_index: number;
+  text_excerpt: string;
+  similarity_score?: number;
+  rerank_score?: number;
+}
+
+export interface DebugInfo {
+  retrieved_chunks?: DebugChunk[];
+  reranked_chunks?: DebugChunk[];
+  final_selected_chunks?: DebugChunk[];
 }
 
 export interface QueryResponse {
@@ -43,6 +58,7 @@ export interface QueryResponse {
   sources: SourceReference[];
   confidence: ConfidenceAssessment;
   disclaimer: string;
+  debug?: DebugInfo;
 }
 
 export interface StatusResponse {
