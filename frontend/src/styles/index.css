@@ -139,6 +139,28 @@ td {
   background: #fef2f2;
 }
 
+/* Sample Loader */
+.btn-sample {
+  margin-top: 0.6rem;
+  width: 100%;
+  padding: 0.5rem 1rem;
+  background: #f0fdf4;
+  color: #15803d;
+  border: 1px solid #86efac;
+  border-radius: 6px;
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: background 0.2s, border-color 0.2s;
+}
+.btn-sample:hover:not(:disabled) {
+  background: #dcfce7;
+  border-color: #4ade80;
+}
+.btn-sample:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
 /* Query */
 .query-section textarea {
   width: 100%;

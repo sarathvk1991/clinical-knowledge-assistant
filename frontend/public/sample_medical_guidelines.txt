@@ -1,0 +1,143 @@
+CLINICAL PRACTICE GUIDELINES — SAMPLE DOCUMENT
+================================================
+Source: Sample Medical Reference (Demo Data)
+Version: 1.0 | For demonstration purposes only
+
+---
+
+SECTION 1: HYPERTENSION MANAGEMENT
+
+Definition:
+Hypertension is defined as a sustained systolic blood pressure (SBP) ≥130 mmHg or diastolic blood pressure (DBP) ≥80 mmHg (ACC/AHA 2017 guidelines).
+
+Classification:
+- Normal: SBP <120 and DBP <80 mmHg
+- Elevated: SBP 120–129 and DBP <80 mmHg
+- Stage 1 Hypertension: SBP 130–139 or DBP 80–89 mmHg
+- Stage 2 Hypertension: SBP ≥140 or DBP ≥90 mmHg
+- Hypertensive Crisis: SBP >180 and/or DBP >120 mmHg
+
+First-line Treatment:
+- Lifestyle modifications: DASH diet, sodium restriction (<2.3 g/day), regular aerobic exercise (150 min/week), weight loss, smoking cessation
+- Pharmacotherapy for Stage 1 with high CV risk or Stage 2:
+  * Thiazide diuretics (e.g., chlorthalidone 12.5–25 mg/day)
+  * ACE inhibitors (e.g., lisinopril 10–40 mg/day)
+  * ARBs (e.g., losartan 50–100 mg/day)
+  * Calcium channel blockers (e.g., amlodipine 5–10 mg/day)
+
+Target BP Goals:
+- General adults: <130/80 mmHg
+- CKD or diabetes: <130/80 mmHg
+- Age ≥65 years: SBP <130 mmHg
+
+---
+
+SECTION 2: TYPE 2 DIABETES MANAGEMENT
+
+Diagnostic Criteria (ADA 2023):
+- Fasting plasma glucose ≥126 mg/dL (7.0 mmol/L)
+- 2-hour plasma glucose ≥200 mg/dL during 75 g OGTT
+- HbA1c ≥6.5% (48 mmol/mol)
+- Random plasma glucose ≥200 mg/dL with hyperglycemic symptoms
+
+Glycemic Targets:
+- HbA1c: <7.0% for most non-pregnant adults
+- Preprandial glucose: 80–130 mg/dL
+- Peak postprandial glucose (1–2 hr after meal): <180 mg/dL
+
+First-line Pharmacotherapy:
+- Metformin remains the preferred initial agent (if tolerated and no contraindications)
+  * Start: 500 mg once or twice daily with meals
+  * Target dose: 1000 mg twice daily
+  * Contraindicated if eGFR <30 mL/min/1.73 m²
+
+Second-line Options (add if HbA1c not at goal after 3 months):
+- GLP-1 receptor agonists (e.g., semaglutide, liraglutide) — preferred with established CVD or high CV risk
+- SGLT-2 inhibitors (e.g., empagliflozin, dapagliflozin) — preferred with heart failure or CKD
+- DPP-4 inhibitors (e.g., sitagliptin) — weight neutral, well tolerated
+- Basal insulin — when HbA1c markedly elevated or oral agents insufficient
+
+Monitoring:
+- HbA1c: every 3 months until stable, then every 6 months
+- Annual: lipid panel, urine albumin-to-creatinine ratio, eGFR, foot exam, dilated eye exam
+
+---
+
+SECTION 3: COMMUNITY-ACQUIRED PNEUMONIA (CAP)
+
+Diagnostic Criteria:
+- New pulmonary infiltrate on chest imaging
+- Plus ≥2 of: fever >38°C, leukocytosis or leukopenia, purulent sputum, cough/dyspnea/pleuritic chest pain
+
+Severity Assessment (PSI/PORT Score or CURB-65):
+CURB-65 criteria (1 point each):
+- Confusion (new)
+- Urea >7 mmol/L (BUN >20 mg/dL)
+- Respiratory rate ≥30/min
+- Blood pressure (SBP <90 or DBP ≤60 mmHg)
+- Age ≥65 years
+
+Score 0–1: Low severity → outpatient treatment
+Score 2: Moderate severity → consider short inpatient stay
+Score ≥3: High severity → hospital admission, consider ICU if ≥4–5
+
+Antibiotic Recommendations:
+Outpatient, no comorbidities:
+- Amoxicillin 1 g three times daily for 5 days, OR
+- Doxycycline 100 mg twice daily for 5 days
+
+Outpatient, with comorbidities (COPD, diabetes, liver/renal disease, immunosuppression):
+- Respiratory fluoroquinolone (levofloxacin 750 mg daily or moxifloxacin 400 mg daily), OR
+- Beta-lactam + macrolide (amoxicillin-clavulanate + azithromycin)
+
+Inpatient, non-ICU:
+- Beta-lactam (ceftriaxone 1–2 g IV daily) + macrolide (azithromycin 500 mg daily), OR
+- Respiratory fluoroquinolone monotherapy
+
+Duration: 5 days (if clinically stable after 48–72 hours)
+
+---
+
+SECTION 4: ACUTE CORONARY SYNDROME (ACS)
+
+Types:
+- ST-elevation MI (STEMI): Complete occlusion → emergent reperfusion
+- Non-ST-elevation MI (NSTEMI): Partial occlusion
+- Unstable angina: No biomarker elevation
+
+Initial Management (all ACS):
+- Aspirin 325 mg loading dose (then 81 mg daily)
+- P2Y12 inhibitor (ticagrelor 180 mg loading or clopidogrel 600 mg loading)
+- Anticoagulation (heparin, enoxaparin, or bivalirudin)
+- High-intensity statin (atorvastatin 80 mg or rosuvastatin 40 mg)
+- Beta-blocker (within 24 hours if no contraindication)
+- ACE inhibitor or ARB (within 24 hours if EF ≤40%, hypertension, or diabetes)
+
+Reperfusion Strategy for STEMI:
+- Primary PCI: Preferred if door-to-balloon time <90 minutes (120 min if transferred)
+- Fibrinolysis: If PCI not available within 120 min of first medical contact
+
+---
+
+SECTION 5: ANTIBIOTIC STEWARDSHIP PRINCIPLES
+
+Core Principles:
+1. Use the narrowest spectrum effective agent
+2. Obtain cultures before starting antibiotics when possible
+3. Review and de-escalate at 48–72 hours based on culture results
+4. Use oral step-down therapy as soon as clinically appropriate
+5. Adhere to evidence-based duration recommendations
+
+Common Durations (evidence-based):
+- CAP (outpatient): 5 days
+- Uncomplicated UTI (women): 3–5 days (nitrofurantoin), 1 day (fosfomycin)
+- Cellulitis: 5 days (extend if not improving)
+- COPD exacerbation: 5 days
+- Sinusitis (bacterial): 5–7 days
+- Intra-abdominal infection (source controlled): 4 days
+
+---
+
+DISCLAIMER: This document is synthetic sample data created for demonstration purposes only.
+It is not intended to replace professional medical judgment or official clinical guidelines.
+Always consult current evidence-based guidelines and institutional protocols for patient care decisions.
