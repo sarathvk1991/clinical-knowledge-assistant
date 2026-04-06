@@ -349,6 +349,7 @@ The architecture reflects the judgment calls a GenAI architect makes when reliab
 ---
 
 ## Author
+**Sarath V**
 
 Built as a portfolio project demonstrating production-grade GenAI system design for healthcare applications.
 
