@@ -55,23 +55,30 @@ async def health():
 @app.get("/debug/pinecone")
 def debug_pinecone():
     from pinecone import Pinecone
+    from config import get_settings
+
     settings = get_settings()
 
-    pc = Pinecone(api_key=settings.pinecone_api_key)
-    
-    indexes = pc.list_indexes()
-    
+    response = {}
+
+    try:
+        pc = Pinecone(api_key=settings.pinecone_api_key)
+        response["client_initialized"] = True
+    except Exception as e:
+        return {"error": "Failed to initialize Pinecone", "details": str(e)}
+
+    try:
+        indexes = pc.list_indexes()
+        response["indexes"] = indexes
+    except Exception as e:
+        response["indexes_error"] = str(e)
+
     try:
         index = pc.Index(settings.pinecone_index_name)
         stats = index.describe_index_stats()
+        response["index_name"] = settings.pinecone_index_name
+        response["stats"] = stats
     except Exception as e:
-        return {
-            "error": str(e),
-            "indexes": indexes
-        }
+        response["index_error"] = str(e)
 
-    return {
-        "indexes": indexes,
-        "index_name": settings.pinecone_index_name,
-        "stats": stats
-    }
+    return response
