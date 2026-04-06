@@ -56,33 +56,42 @@ async def health():
 def debug_pinecone():
     from pinecone import Pinecone
     from config import get_settings
+    from services.embedding_service import generate_embedding
 
     settings = get_settings()
+
+    pc = Pinecone(api_key=settings.pinecone_api_key)
+    index = pc.Index(settings.pinecone_index_name)
 
     response = {}
 
     try:
-        pc = Pinecone(api_key=settings.pinecone_api_key)
-        response["client_initialized"] = True
-    except Exception as e:
-        return {"error": "Failed to initialize Pinecone", "details": str(e)}
-
-    try:
-        indexes = pc.list_indexes()
-        # ✅ convert to simple list
-        response["indexes"] = [i["name"] for i in indexes]
-    except Exception as e:
-        response["indexes_error"] = str(e)
-
-    try:
-        index = pc.Index(settings.pinecone_index_name)
         stats = index.describe_index_stats()
+        response["total_vector_count"] = stats.get("total_vector_count", 0)
+    except Exception as e:
+        response["stats_error"] = str(e)
 
-        # ✅ only extract safe fields
-        response["index_name"] = settings.pinecone_index_name
-        response["total_vector_count"] = stats.get("total_vector_count", "unknown")
+    try:
+        test_query = "hypertension treatment"
+        query_vector = generate_embedding(test_query)
+
+        result = index.query(
+            vector=query_vector,
+            top_k=5,
+            include_metadata=True
+        )
+
+        # ✅ SAFE SERIALIZATION
+        response["query_match_count"] = len(result.get("matches", []))
+        response["matches"] = [
+            {
+                "score": m.get("score"),
+                "metadata": m.get("metadata", {})
+            }
+            for m in result.get("matches", [])
+        ]
 
     except Exception as e:
-        response["index_error"] = str(e)
+        response["query_error"] = str(e)
 
     return response
