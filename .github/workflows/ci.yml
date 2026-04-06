@@ -76,8 +76,7 @@ jobs:
         working-directory: frontend
         run: npm run tsc
 
-      - name: Run tests (placeholder)
-        if: false # TODO: Enable once tests are implemented
+      - name: Run tests
         working-directory: frontend
         run: npm test
 
