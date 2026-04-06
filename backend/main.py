@@ -51,3 +51,27 @@ app.include_router(query_router, prefix="/api", tags=["query"])
 @app.get("/health")
 async def health():
     return {"status": "healthy", "version": "2.0.0"}
+
+@app.get("/debug/pinecone")
+def debug_pinecone():
+    from pinecone import Pinecone
+    settings = get_settings()
+
+    pc = Pinecone(api_key=settings.pinecone_api_key)
+    
+    indexes = pc.list_indexes()
+    
+    try:
+        index = pc.Index(settings.pinecone_index_name)
+        stats = index.describe_index_stats()
+    except Exception as e:
+        return {
+            "error": str(e),
+            "indexes": indexes
+        }
+
+    return {
+        "indexes": indexes,
+        "index_name": settings.pinecone_index_name,
+        "stats": stats
+    }
