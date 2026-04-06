@@ -19,7 +19,8 @@ def retrieve_chunks(
     k = top_k or settings.retrieval_top_k
 
     try:
-        query_embedding = generate_embedding(query)
+        enriched_query = f"{query} clinical guidelines treatment diagnosis management"
+        query_embedding = generate_embedding(enriched_query.lower())
         pc = get_pinecone_client()
         index = pc.Index(settings.pinecone_index_name)
 
@@ -27,21 +28,30 @@ def retrieve_chunks(
         if document_filter:
             filter_dict["document_id"] = {"$in": document_filter}
 
-        results = index.query(
-            vector=query_embedding,
-            top_k=k,
-            include_metadata=True,
-            filter=filter_dict if filter_dict else None,
-        )
+        query_params = {
+             "vector": query_embedding,
+             "top_k": k,
+             "include_metadata": True,
+        }
+        
+        if filter_dict:
+             query_params["filter"] = filter_dict
+             
+        results = index.query(**query_params)
+        
 
         chunks = []
-        for match in results.matches:
+
+        matches = results.get("matches", [])
+        
+        for match in matches:
+            metadata = match.get("metadata", {})
             chunks.append({
-                "text": match.metadata.get("text", ""),
-                "document_name": match.metadata.get("document_name", ""),
-                "document_id": match.metadata.get("document_id", ""),
-                "chunk_index": match.metadata.get("chunk_index", 0),
-                "similarity_score": match.score,
+                "text": metadata.get("text", ""),
+                "document_name": metadata.get("document_name", ""),
+                "document_id": metadata.get("document_id", ""),
+                "chunk_index": metadata.get("chunk_index", 0),
+                "similarity_score": match.get("score", 0.0),
             })
 
         logger.info(f"Retrieved {len(chunks)} chunks for query")
