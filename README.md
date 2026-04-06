@@ -5,6 +5,8 @@
 
 > Designed with production-grade safety, observability, and evaluation layers — not just a basic RAG demo.
 
+> Designed to demonstrate how real-world GenAI systems handle reliability, hallucination risk, and observability — not just answer generation.
+
 ---
 
 ## Overview

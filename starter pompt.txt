@@ -1,0 +1,140 @@
+I would like to build an app called Clinical Knowledge Assistant which is a healthcare AI system. The application supports the following functionalities.
+
+1. Upload clinical/medical documents (PDF, text files)
+2. View list of uploaded documents with metadata (name, type, upload date)
+3. Ask natural language questions based on uploaded documents
+4. Receive context-aware answers grounded in the uploaded data
+5. View source citations for each answer (document + section/chunk)
+6. View a confidence score for each response
+7. See a medical disclaimer along with every response
+8. Get a safe fallback response when information is insufficient (e.g., “I don’t have enough information”)
+9. Ability to filter queries based on document type (e.g., guidelines, prescriptions)
+10. Re-ask or refine previous questions (basic conversational continuity)
+11. Delete or update previously uploaded documents
+12. View system status (e.g., ingestion success, errors if any)
+
+User Flow
+
+1. User uploads document
+2. System processes document (parsing, chunking, embedding)
+3. Document chunks are stored in vector database
+4. User submits a query
+5. System retrieves relevant chunks (Top-K + optional filters)
+6. LLM generates response using retrieved context
+7. System returns response with answer, sources, confidence score and disclaimer
+
+Additional Requirements
+
+1. Safety & Healthcare Compliance
+   a. System must avoid hallucinated or unsupported medical claims
+   b. Responses must always be grounded in retrieved content
+   c. Must include disclaimer in all responses
+   d. Must provide “unknown” fallback when confidence is low
+
+2. Response Quality & Explainability
+   a. Include source attribution for every response
+   b. Maintain traceability between answer and retrieved chunks
+   c. Provide a confidence score (heuristic-based)
+   d. Confidence score should be derived from retrieval similarity and supporting chunks
+
+3. Performance & Scalability
+   a. Support asynchronous processing for document ingestion and querying
+   b. Efficient retrieval for large document sets
+   c. Handle concurrent user queries
+   d. Optional caching for repeated queries
+
+4. Extensibility
+   a. Addition of agent workflows (future LangGraph integration)
+   b. Integration with evaluation pipelines (LLMOps)
+   c. Support for multiple LLM providers
+
+5. Logging & Observability
+   a. Log user queries, retrieved documents and LLM responses
+   b. Enable debugging of RAG failures (e.g., bad retrieval vs bad generation)
+
+6. Error Handling
+   a. Graceful handling of invalid document uploads, parsing failures, embedding failures and LLM timeouts/errors
+   b. Clear API error responses
+
+7. Maintainability & Testing
+   a. Modular design to support unit testing
+   b. Clear separation of concerns
+   c. Configurable components (LLM, vector DB, chunking strategy)
+
+8. Prompt Behavior Rules
+   a. Only answer using retrieved context
+   b. Do not infer beyond provided documents
+   c. If insufficient information, return fallback response
+   d. Always include source citations
+   e. Avoid unsafe or speculative medical advice
+
+Technical inputs
+
+1. GenAI Layer
+   a. Use LangChain for document loading, chunking, embeddings and retrieval + generation pipeline
+   b. Design prompt template to enforce grounding, avoid hallucination and return structured output
+
+2. Vector Database
+   a. Use Pinecone
+   b. Store embeddings and metadata (source, document type, chunk id)
+
+3. Backend
+   a. Python + FastAPI
+   b. Pydantic for request/response validation
+   c. REST APIs for document ingestion, query and document management
+   d. Async endpoints for scalability
+
+4. System Design
+   a. Layered architecture:
+   a. API layer (routers/controllers)
+   b. service layer (business logic)
+   c. data layer (vector DB interactions)
+   b. Dependency injection where applicable
+
+5. API Contracts
+   a. POST /documents/upload
+   b. GET /documents
+   c. DELETE /documents/{id}
+   d. POST /query
+
+6. Data Model (High-Level)
+   a. Document: id, name, type, upload_date
+   b. Chunk: id, document_id, text, embedding
+   c. Query: query_text, filters
+   d. Response: answer, sources, confidence_score
+
+7. Performance
+   a. Batch processing for embeddings
+   b. Optional caching layer (Redis or in-memory)
+
+8. Logging
+   a. Structured logging (JSON preferred)
+   b. Include request IDs for traceability
+
+9. LLM Integration
+   a. Support configurable LLM providers: OpenAI API
+   b. Abstract LLM calls behind a service layer
+
+10. Frontend (Minimal)
+    a. React.js
+    b. Simple components:
+    a. input box
+    b. response display
+    c. sources
+    d. confidence score
+    c. Communicate with backend via REST APIs
+
+11. Configuration
+    a. Environment-based config (dotenv)
+    b. Central config module
+
+Non-Goals
+
+1. Not a replacement for medical professionals
+2. Not intended for real-time clinical decision-making
+3. No integration with hospital EMR systems in initial version
+4. UI will remain minimal and not feature-heavy
+
+Build a detailed prompt for building this system using Claude Code.
+Make sure all the requirements related to frontend, backend and db are captured.
+Ensure the solution is modular, production-ready, and extensible for future enhancements.
