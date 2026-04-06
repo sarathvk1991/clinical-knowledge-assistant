@@ -1,6 +1,9 @@
+![CI](https://github.com/sarathvk1991/clinical-knowledge-assistant/actions/workflows/ci.yml/badge.svg)
 # Clinical Knowledge Assistant
 
 > A production-grade, healthcare-focused RAG system that answers clinical questions grounded strictly in uploaded documents — with LLM-based reranking, hallucination detection, confidence scoring, and full pipeline observability.
+
+> Designed with production-grade safety, observability, and evaluation layers — not just a basic RAG demo.
 
 ---
 
@@ -9,6 +12,32 @@
 Clinical Knowledge Assistant is an end-to-end **Retrieval-Augmented Generation (RAG)** application built for the healthcare domain. Clinicians and researchers upload PDF or plain-text clinical documents; the system chunks, embeds, and indexes them in a vector database. Natural language questions are answered by a multi-stage pipeline: semantic retrieval → LLM-based reranking → GPT-4o generation → LLM-based hallucination evaluation → heuristic confidence scoring.
 
 Every response cites its sources with similarity scores, carries a confidence level, and is prefixed with a caution notice when the pipeline detects low confidence or a potential hallucination. A debug mode exposes every intermediate stage of the pipeline for full explainability.
+
+---
+
+## At a Glance
+
+- 🔍 Retrieval-Augmented Generation (RAG)
+- 🧠 LLM-based Reranking
+- ⚠️ Hallucination Detection Layer
+- 📊 Confidence Scoring (multi-factor)
+- 🔁 Conversational Memory
+- 🧪 Full Test Coverage (backend + frontend)
+- 🚀 CI/CD Pipeline (GitHub Actions)
+- 🌐 Deployed (Render + Vercel)
+
+---
+
+## Screenshots
+
+### Query + Response
+![Query](./screenshots/query.png)
+
+### Debug Panel (Pipeline Observability)
+![Debug](./screenshots/debug.png)
+
+### Document Upload
+![Upload](./screenshots/upload.png)
 
 ---
 
@@ -346,7 +375,47 @@ Healthcare AI is one of the highest-stakes domains for RAG systems. A hallucinat
 
 The architecture reflects the judgment calls a GenAI architect makes when reliability and explainability are non-negotiable: separation of concerns across pipeline stages, multiple evaluation signals, observable intermediate state, and graceful degradation over silent failure.
 
----
+----
+## 🌐 Live Demo
+
+Frontend: https://clinical-knowledge-assistant.vercel.app/
+Backend API Docs : https://clinical-knowledge-assistant-backend.onrender.com/docs
+
+----
+
+## Demo Flow
+
+1. Load sample clinical data
+2. Ask a medical question (e.g. hypertension treatment)
+3. View:
+   - Answer
+   - Confidence score
+   - Source citations
+4. Enable debug mode to inspect:
+   - Retrieved chunks
+   - Reranked chunks
+   - Final context used
+
+----
+
+## CI/CD & Testing
+
+- **GitHub Actions CI pipeline**
+  - Backend: pytest execution on every push/PR
+  - Frontend: TypeScript check + production build validation
+- **Backend Testing**
+  - Unit tests (services)
+  - API tests (FastAPI endpoints)
+  - Integration tests (full RAG pipeline with mocks)
+- **Frontend Testing**
+  - Vitest + React Testing Library
+  - Component-level tests (QueryInput, ResponseDisplay, Upload flow)
+
+CI ensures all tests pass and builds succeed before deployment.
+
+----
+
+
 
 ## Author
 **Sarath V**
